@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Geovane Ink",
   description:
-    "Estúdio de tatuagem Geovane Ink. Site em manutenção — acompanhe o trabalho em @geovane.ink.",
+    "Estúdio de tatuagem Geovane Ink. Portfólio, artes disponíveis e orçamentos — @geovane.ink.",
 };
 
 export default function RootLayout({
