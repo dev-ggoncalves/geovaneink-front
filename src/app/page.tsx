@@ -41,15 +41,17 @@ export default function HomePage() {
         </Link>
       </nav>
 
-      <a
-        href={INSTAGRAM_URL}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="mx-auto mt-8 inline-flex min-h-12 w-full max-w-lg items-center justify-center gap-2 rounded-lg bg-primary px-6 py-3 text-sm font-semibold text-surface transition-colors hover:bg-primary-hover"
-      >
-        <InstagramIcon className="h-5 w-5" />
-        Seguir {INSTAGRAM_HANDLE}
-      </a>
+      <div className="mt-8 flex justify-center">
+        <a
+          href={INSTAGRAM_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex min-h-12 w-full max-w-lg items-center justify-center gap-2 rounded-lg bg-primary px-6 py-3 text-sm font-semibold text-surface transition-colors hover:bg-primary-hover"
+        >
+          <InstagramIcon className="h-5 w-5" />
+          Seguir {INSTAGRAM_HANDLE}
+        </a>
+      </div>
     </SiteShell>
   );
 }

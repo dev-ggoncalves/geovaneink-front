@@ -10,6 +10,7 @@ export function QuoteForm() {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [message, setMessage] = useState("");
+  const [image, setImage] = useState<File | null>(null);
   const [error, setError] = useState("");
   const [sent, setSent] = useState(false);
   const [whatsappUrl, setWhatsappUrl] = useState("");
@@ -18,9 +19,13 @@ export function QuoteForm() {
   async function onSubmit(event: FormEvent) {
     event.preventDefault();
     setError("");
+    if (image && image.size > 10 * 1024 * 1024) {
+      setError("A imagem deve ter no máximo 10 MB.");
+      return;
+    }
     setLoading(true);
     try {
-      const result = await createQuote({ name, email, phone, message });
+      const result = await createQuote({ name, email, phone, message, image });
       setWhatsappUrl(result.whatsapp_url);
       setSent(true);
       window.open(result.whatsapp_url, "_blank", "noopener,noreferrer");
@@ -101,6 +106,19 @@ export function QuoteForm() {
           onChange={(event) => setMessage(event.target.value)}
           className="mt-2 w-full rounded-lg border border-border bg-surface px-3 py-3 text-sm text-ink outline-none placeholder:text-muted focus:border-primary focus:ring-2 focus:ring-primary/20"
         />
+      </div>
+      <div>
+        <label htmlFor="image" className="text-sm font-medium text-ink">
+          Imagem de referência (opcional)
+        </label>
+        <input
+          id="image"
+          type="file"
+          accept="image/png,image/jpeg,image/webp,image/gif"
+          onChange={(event) => setImage(event.target.files?.[0] ?? null)}
+          className="mt-2 w-full text-sm text-muted file:mr-3 file:rounded-lg file:border-0 file:bg-primary file:px-4 file:py-2 file:font-semibold file:text-surface"
+        />
+        {image ? <p className="mt-2 truncate text-xs text-muted">{image.name}</p> : null}
       </div>
       {error ? <p className="text-sm text-error">{error}</p> : null}
       <button

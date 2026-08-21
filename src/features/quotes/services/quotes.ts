@@ -6,6 +6,7 @@ export type Quote = {
   email: string;
   phone: string;
   message: string;
+  image_url: string | null;
   status: "new" | "answered";
   reply_text: string;
   created_at: string;
@@ -21,10 +22,19 @@ export function createQuote(payload: {
   email: string;
   phone: string;
   message: string;
+  image?: File | null;
 }) {
+  const formData = new FormData();
+  formData.append("name", payload.name);
+  formData.append("email", payload.email);
+  formData.append("phone", payload.phone);
+  formData.append("message", payload.message);
+  if (payload.image) {
+    formData.append("image", payload.image);
+  }
   return apiFetch<QuoteCreateResponse>("/api/v1/quotes/", {
     method: "POST",
-    json: payload,
+    formData,
   });
 }
 
