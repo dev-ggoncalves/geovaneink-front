@@ -207,6 +207,15 @@ function QuotesPanel() {
             {item.phone ? ` · ${item.phone}` : ""}
           </p>
           <p className="mt-3 text-sm leading-relaxed">{item.message}</p>
+          {item.image_url ? (
+            <a href={item.image_url} target="_blank" rel="noopener noreferrer" className="mt-3 block">
+              <img
+                src={item.image_url}
+                alt={`Referência de ${item.name}`}
+                className="max-h-56 w-full max-w-xs rounded-lg border border-border object-cover"
+              />
+            </a>
+          ) : null}
           {item.reply_text ? (
             <p className="mt-3 text-sm text-sage">Resposta: {item.reply_text}</p>
           ) : (
