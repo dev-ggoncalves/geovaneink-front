@@ -30,17 +30,17 @@ export function ApiStatus() {
     status === "checking" ? "Checando API…" : status === "ok" ? "API online" : "API offline (local/dev)";
 
   return (
-    <p className="mt-6 flex items-center gap-2 text-sm text-slate-400">
+    <p className="mt-6 flex items-center gap-2 text-sm text-muted">
       <span
         className={cn(
           "inline-block h-2 w-2 rounded-full",
-          status === "ok" && "bg-green-500",
-          status === "checking" && "bg-yellow-400",
-          status === "offline" && "bg-red-500",
+          status === "ok" && "bg-sage",
+          status === "checking" && "bg-primary",
+          status === "offline" && "bg-error",
         )}
       />
       {label}
-      <span className="truncate text-slate-500">{API_BASE_URL || "sem URL"}</span>
+      <span className="truncate text-muted/70">{API_BASE_URL || "sem URL"}</span>
     </p>
   );
 }
