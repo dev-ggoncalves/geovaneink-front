@@ -15,8 +15,7 @@ Abre em `http://localhost:3000`. A API local deve estar em `http://localhost:800
 ## Vercel
 
 1. Importe o repositório `geovaneink-front`.
-2. Framework: **Next.js** (detectado automaticamente).
-3. Variável de ambiente:
-   - `NEXT_PUBLIC_API_URL` — URL pública da API Django (depois do backend no ar).
-
-Enquanto a API não estiver publicada, o indicador na home mostra **API offline** — o site continua no ar.
+2. Framework: **Next.js**.
+3. Variáveis:
+   - `API_PROXY_URL` — origem da API Django, ex. `https://web-production-c07ea.up.railway.app`. O Next faz rewrite de `/api` e `/media` para essa origem.
+   - `NEXT_PUBLIC_API_URL` — vazio em produção (o browser chama o próprio domínio). Em local: `http://localhost:8000`.
