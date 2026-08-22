@@ -27,7 +27,7 @@ export function ApiStatus() {
   }, []);
 
   const label =
-    status === "checking" ? "Checando API…" : status === "ok" ? "API online" : "API offline (local/dev)";
+    status === "checking" ? "Checking API…" : status === "ok" ? "API online" : "API offline (local/dev)";
 
   return (
     <p className="mt-6 flex items-center gap-2 text-sm text-muted">
@@ -40,7 +40,7 @@ export function ApiStatus() {
         )}
       />
       {label}
-      <span className="truncate text-muted/70">{API_BASE_URL || "sem URL"}</span>
+      <span className="truncate text-muted/70">{API_BASE_URL || "no URL"}</span>
     </p>
   );
 }

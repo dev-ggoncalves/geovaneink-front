@@ -13,24 +13,21 @@ export function QuoteForm() {
   const [image, setImage] = useState<File | null>(null);
   const [error, setError] = useState("");
   const [sent, setSent] = useState(false);
-  const [whatsappUrl, setWhatsappUrl] = useState("");
   const [loading, setLoading] = useState(false);
 
   async function onSubmit(event: FormEvent) {
     event.preventDefault();
     setError("");
     if (image && image.size > 10 * 1024 * 1024) {
-      setError("A imagem deve ter no máximo 10 MB.");
+      setError("The image must be 10 MB or smaller.");
       return;
     }
     setLoading(true);
     try {
-      const result = await createQuote({ name, email, phone, message, image });
-      setWhatsappUrl(result.whatsapp_url);
+      await createQuote({ name, email, phone, message, image });
       setSent(true);
-      window.open(result.whatsapp_url, "_blank", "noopener,noreferrer");
     } catch (err) {
-      setError(err instanceof ApiError ? err.message : "Não foi possível enviar o orçamento.");
+      setError(err instanceof ApiError ? err.message : "The quote could not be sent.");
     } finally {
       setLoading(false);
     }
@@ -39,18 +36,8 @@ export function QuoteForm() {
   if (sent) {
     return (
       <div className="rounded-xl border border-border bg-card p-6">
-        <h2 className="text-lg font-semibold">Pedido enviado</h2>
-        <p className="mt-2 text-sm text-muted">
-          Recebi o seu orçamento no e-mail. Se o WhatsApp não abriu, use o botão abaixo.
-        </p>
-        <a
-          href={whatsappUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="mt-6 inline-flex min-h-12 w-full items-center justify-center rounded-lg bg-primary px-6 py-3 text-sm font-semibold text-surface transition-colors hover:bg-primary-hover"
-        >
-          Enviar também no WhatsApp
-        </a>
+        <h2 className="text-lg font-semibold">Request sent</h2>
+        <p className="mt-2 text-sm text-muted">An email will be sent.</p>
       </div>
     );
   }
@@ -59,7 +46,7 @@ export function QuoteForm() {
     <form onSubmit={onSubmit} className="space-y-4 rounded-xl border border-border bg-card p-6">
       <div>
         <label htmlFor="name" className="text-sm font-medium text-ink">
-          Nome
+          Name
         </label>
         <input
           id="name"
@@ -71,7 +58,7 @@ export function QuoteForm() {
       </div>
       <div>
         <label htmlFor="email" className="text-sm font-medium text-ink">
-          E-mail
+          Email
         </label>
         <input
           id="email"
@@ -84,7 +71,7 @@ export function QuoteForm() {
       </div>
       <div>
         <label htmlFor="phone" className="text-sm font-medium text-ink">
-          Telefone / WhatsApp
+          Phone
         </label>
         <input
           id="phone"
@@ -95,7 +82,7 @@ export function QuoteForm() {
       </div>
       <div>
         <label htmlFor="message" className="text-sm font-medium text-ink">
-          Ideia da tatuagem
+          Tattoo idea
         </label>
         <textarea
           id="message"
@@ -109,7 +96,7 @@ export function QuoteForm() {
       </div>
       <div>
         <label htmlFor="image" className="text-sm font-medium text-ink">
-          Imagem de referência (opcional)
+          Reference image (optional)
         </label>
         <input
           id="image"
@@ -126,7 +113,7 @@ export function QuoteForm() {
         disabled={loading}
         className="inline-flex min-h-12 w-full items-center justify-center rounded-lg bg-primary px-6 py-3 text-sm font-semibold text-surface transition-colors hover:bg-primary-hover disabled:cursor-not-allowed disabled:opacity-60"
       >
-        {loading ? "Enviando…" : "Pedir orçamento"}
+        {loading ? "Sending…" : "Request a quote"}
       </button>
     </form>
   );

@@ -31,7 +31,8 @@ export async function apiFetch<T>(
   path: string,
   init?: RequestInit & { json?: unknown; formData?: FormData },
 ): Promise<T> {
-  const url = `${API_BASE_URL}${path.startsWith("/") ? "" : "/"}${path}`;
+  const normalized = path.startsWith("/") ? path : `/${path}`;
+  const url = `${API_BASE_URL}${normalized}`;
   const headers = new Headers(init?.headers);
   const token = getAccessToken();
   if (token && !headers.has("Authorization")) {
