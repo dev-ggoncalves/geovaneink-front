@@ -1,3 +1,4 @@
+import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
 
 export function SiteShell({ children }: { children: React.ReactNode }) {
@@ -11,6 +12,7 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
         />
         <div className="relative mx-auto w-full max-w-5xl flex-1 px-4 py-8">{children}</div>
       </main>
+      <SiteFooter />
     </div>
   );
 }
