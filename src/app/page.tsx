@@ -9,14 +9,14 @@ export default function HomePage() {
     <SiteShell>
       <section className="mx-auto max-w-lg space-y-4 text-center">
         <p className="text-sm font-medium tracking-[0.2em] text-sage uppercase">
-          Estúdio de tatuagem
+          Tattoo studio
         </p>
         <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl">
-          Bem-vindo à Geovane Ink
+          Welcome to Geovane Ink
         </h1>
         <p className="text-base leading-relaxed text-muted">
-          Eu sou o Geovane, tatuador. Veja o portfólio, as artes disponíveis e peça
-          o seu orçamento.
+          I&apos;m Geovane, tattoo artist. Browse the portfolio, available flash, and
+          request a quote.
         </p>
       </section>
 
@@ -25,19 +25,19 @@ export default function HomePage() {
           href="/portfolio"
           className="rounded-xl border border-border bg-card px-4 py-4 text-center text-sm font-medium text-ink transition-colors hover:border-primary/50"
         >
-          Portfólio
+          Portfolio
         </Link>
         <Link
           href="/artes"
           className="rounded-xl border border-border bg-card px-4 py-4 text-center text-sm font-medium text-ink transition-colors hover:border-primary/50"
         >
-          Artes
+          Flash
         </Link>
         <Link
           href="/orcamento"
           className="rounded-xl border border-border bg-card px-4 py-4 text-center text-sm font-medium text-ink transition-colors hover:border-primary/50"
         >
-          Orçamento
+          Quote
         </Link>
       </nav>
 
@@ -49,7 +49,7 @@ export default function HomePage() {
           className="inline-flex min-h-12 w-full max-w-lg items-center justify-center gap-2 rounded-lg bg-primary px-6 py-3 text-sm font-semibold text-surface transition-colors hover:bg-primary-hover"
         >
           <InstagramIcon className="h-5 w-5" />
-          Seguir {INSTAGRAM_HANDLE}
+          Follow {INSTAGRAM_HANDLE}
         </a>
       </div>
     </SiteShell>

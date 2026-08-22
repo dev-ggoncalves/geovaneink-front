@@ -9,10 +9,10 @@ import { cn } from "@/lib/cn";
 import { INSTAGRAM_HANDLE, INSTAGRAM_URL } from "@/shared/constants/social";
 
 const links = [
-  { href: "/", label: "Início" },
-  { href: "/portfolio", label: "Portfólio" },
-  { href: "/artes", label: "Artes" },
-  { href: "/orcamento", label: "Orçamento" },
+  { href: "/", label: "Home" },
+  { href: "/portfolio", label: "Portfolio" },
+  { href: "/artes", label: "Flash" },
+  { href: "/orcamento", label: "Quote" },
 ];
 
 export function SiteHeader() {
@@ -51,7 +51,7 @@ export function SiteHeader() {
           </a>
           <button
             type="button"
-            aria-label={open ? "Fechar menu" : "Abrir menu"}
+            aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
             onClick={() => setOpen((value) => !value)}
             className="flex h-10 w-10 items-center justify-center rounded-lg border border-border text-ink md:hidden"

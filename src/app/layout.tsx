@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Geovane Ink",
   description:
-    "Estúdio de tatuagem Geovane Ink. Portfólio, artes disponíveis e orçamentos — @geovane.ink.",
+    "Geovane Ink tattoo studio. Portfolio, available flash, and quotes — @geovane.ink.",
 };
 
 export default function RootLayout({
@@ -25,7 +25,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt">
+    <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         {children}
       </body>

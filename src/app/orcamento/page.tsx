@@ -5,11 +5,8 @@ export default function OrcamentoPage() {
   return (
     <SiteShell>
       <div className="mx-auto max-w-lg">
-        <h1 className="text-2xl font-semibold tracking-tight">Pedir orçamento</h1>
-        <p className="mt-2 text-sm text-muted">
-          O pedido chega no e-mail contato.geovaneink@gmail.com e também pode ir
-          para o WhatsApp +353 83 861 3064.
-        </p>
+        <h1 className="text-2xl font-semibold tracking-tight">Request a quote</h1>
+        <p className="mt-2 text-sm text-muted">An email will be sent after you submit this form.</p>
         <div className="mt-8">
           <QuoteForm />
         </div>

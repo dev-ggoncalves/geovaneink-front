@@ -15,7 +15,7 @@ export function GalleryGrid({ kind, emptyLabel }: { kind: GalleryKind; emptyLabe
         if (!cancelled) setItems(data);
       })
       .catch(() => {
-        if (!cancelled) setError("A galeria ainda não está disponível.");
+        if (!cancelled) setError("The gallery is not available yet.");
       });
     return () => {
       cancelled = true;
@@ -36,7 +36,7 @@ export function GalleryGrid({ kind, emptyLabel }: { kind: GalleryKind; emptyLabe
         <li key={item.id} className="overflow-hidden rounded-xl border border-border bg-card">
           <img
             src={item.image_url}
-            alt={item.title || "Tatuagem Geovane Ink"}
+            alt={item.title || "Geovane Ink tattoo"}
             className="aspect-square w-full object-cover"
           />
           {item.title ? (

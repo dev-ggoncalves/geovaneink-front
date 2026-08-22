@@ -43,7 +43,7 @@ export default function AdminPage() {
   if (!ready) {
     return (
       <SiteShell>
-        <p className="text-sm text-muted">A carregar…</p>
+        <p className="text-sm text-muted">Loading…</p>
       </SiteShell>
     );
   }
@@ -51,7 +51,7 @@ export default function AdminPage() {
   return (
     <SiteShell>
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <h1 className="text-2xl font-semibold tracking-tight">Administração</h1>
+        <h1 className="text-2xl font-semibold tracking-tight">Admin</h1>
         <button
           type="button"
           onClick={() => {
@@ -60,15 +60,15 @@ export default function AdminPage() {
           }}
           className="h-10 rounded-lg border border-border px-4 text-sm text-muted hover:bg-card"
         >
-          Sair
+          Sign out
         </button>
       </div>
       <div className="mt-6 flex gap-2 overflow-x-auto">
         {(
           [
-            ["portfolio", "Portfólio"],
-            ["flash", "Artes"],
-            ["quotes", "Orçamentos"],
+            ["portfolio", "Portfolio"],
+            ["flash", "Flash"],
+            ["quotes", "Quotes"],
           ] as const
         ).map(([id, label]) => (
           <button
@@ -101,7 +101,7 @@ function GalleryPanel({ kind }: { kind: GalleryKind }) {
   function refresh() {
     listGallery(kind)
       .then(setItems)
-      .catch(() => setError("Não foi possível carregar as imagens."));
+      .catch(() => setError("Could not load the images."));
   }
 
   useEffect(() => {
@@ -111,7 +111,7 @@ function GalleryPanel({ kind }: { kind: GalleryKind }) {
   async function onSubmit(event: FormEvent) {
     event.preventDefault();
     if (!file) {
-      setError("Escolha uma imagem.");
+      setError("Choose an image.");
       return;
     }
     setError("");
@@ -122,7 +122,7 @@ function GalleryPanel({ kind }: { kind: GalleryKind }) {
       setFile(null);
       refresh();
     } catch (err) {
-      setError(err instanceof ApiError ? err.message : "Falha no upload.");
+      setError(err instanceof ApiError ? err.message : "Upload failed.");
     } finally {
       setLoading(false);
     }
@@ -131,11 +131,11 @@ function GalleryPanel({ kind }: { kind: GalleryKind }) {
   return (
     <div className="space-y-8">
       <form onSubmit={onSubmit} className="space-y-4 rounded-xl border border-border bg-card p-6">
-        <h2 className="font-semibold">Enviar imagem</h2>
+        <h2 className="font-semibold">Upload image</h2>
         <input
           value={title}
           onChange={(event) => setTitle(event.target.value)}
-          placeholder="Título (opcional)"
+          placeholder="Title (optional)"
           className="w-full rounded-lg border border-border bg-surface px-3 py-3 text-sm outline-none focus:border-primary"
         />
         <input
@@ -150,7 +150,7 @@ function GalleryPanel({ kind }: { kind: GalleryKind }) {
           disabled={loading}
           className="inline-flex min-h-12 w-full items-center justify-center rounded-lg bg-primary px-6 py-3 text-sm font-semibold text-surface hover:bg-primary-hover disabled:opacity-60 sm:w-auto"
         >
-          {loading ? "A enviar…" : "Publicar"}
+          {loading ? "Uploading…" : "Publish"}
         </button>
       </form>
       <ul className="grid grid-cols-2 gap-3 md:grid-cols-3">
@@ -158,7 +158,7 @@ function GalleryPanel({ kind }: { kind: GalleryKind }) {
           <li key={item.id} className="overflow-hidden rounded-xl border border-border bg-card">
             <img src={item.image_url} alt={item.title} className="aspect-square w-full object-cover" />
             <div className="flex items-center justify-between gap-2 px-3 py-2">
-              <p className="truncate text-sm text-muted">{item.title || "Sem título"}</p>
+              <p className="truncate text-sm text-muted">{item.title || "Untitled"}</p>
               <button
                 type="button"
                 onClick={async () => {
@@ -167,7 +167,7 @@ function GalleryPanel({ kind }: { kind: GalleryKind }) {
                 }}
                 className="text-xs text-error"
               >
-                Remover
+                Remove
               </button>
             </div>
           </li>
@@ -183,7 +183,7 @@ function QuotesPanel() {
   const [error, setError] = useState("");
 
   function refresh() {
-    listQuotes().then(setItems).catch(() => setError("Não foi possível carregar os orçamentos."));
+    listQuotes().then(setItems).catch(() => setError("Could not load quotes."));
   }
 
   useEffect(() => {
@@ -193,13 +193,13 @@ function QuotesPanel() {
   return (
     <div className="space-y-4">
       {error ? <p className="text-sm text-error">{error}</p> : null}
-      {items.length === 0 ? <p className="text-sm text-muted">Nenhum orçamento ainda.</p> : null}
+      {items.length === 0 ? <p className="text-sm text-muted">No quotes yet.</p> : null}
       {items.map((item) => (
         <article key={item.id} className="rounded-xl border border-border bg-card p-5">
           <div className="flex flex-wrap items-center justify-between gap-2">
             <h3 className="font-semibold">{item.name}</h3>
             <span className="text-xs uppercase tracking-wide text-sage">
-              {item.status === "answered" ? "Respondido" : "Novo"}
+              {item.status === "answered" ? "Answered" : "New"}
             </span>
           </div>
           <p className="mt-1 text-sm text-muted">
@@ -211,13 +211,13 @@ function QuotesPanel() {
             <a href={item.image_url} target="_blank" rel="noopener noreferrer" className="mt-3 block">
               <img
                 src={item.image_url}
-                alt={`Referência de ${item.name}`}
+                alt={`Reference from ${item.name}`}
                 className="max-h-56 w-full max-w-xs rounded-lg border border-border object-cover"
               />
             </a>
           ) : null}
           {item.reply_text ? (
-            <p className="mt-3 text-sm text-sage">Resposta: {item.reply_text}</p>
+            <p className="mt-3 text-sm text-sage">Reply: {item.reply_text}</p>
           ) : (
             <form
               className="mt-4 space-y-3"
@@ -227,7 +227,7 @@ function QuotesPanel() {
                   await replyQuote(item.id, reply[item.id] || "");
                   refresh();
                 } catch (err) {
-                  setError(err instanceof ApiError ? err.message : "Falha ao responder.");
+                  setError(err instanceof ApiError ? err.message : "Could not send the reply.");
                 }
               }}
             >
@@ -235,14 +235,14 @@ function QuotesPanel() {
                 rows={3}
                 value={reply[item.id] || ""}
                 onChange={(event) => setReply((current) => ({ ...current, [item.id]: event.target.value }))}
-                placeholder="Resposta para o cliente"
+                placeholder="Reply to the client"
                 className="w-full rounded-lg border border-border bg-surface px-3 py-3 text-sm outline-none focus:border-primary"
               />
               <button
                 type="submit"
                 className="inline-flex min-h-10 w-full items-center justify-center rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-surface hover:bg-primary-hover sm:w-auto"
               >
-                Enviar resposta
+                Send reply
               </button>
             </form>
           )}

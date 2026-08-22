@@ -22,7 +22,7 @@ export default function LoginPage() {
       await login(email, password);
       router.replace("/admin");
     } catch (err) {
-      setError(err instanceof ApiError ? "E-mail ou senha inválidos." : "Não foi possível entrar.");
+      setError(err instanceof ApiError ? "Invalid email or password." : "Could not sign in.");
     } finally {
       setLoading(false);
     }
@@ -34,11 +34,11 @@ export default function LoginPage() {
         onSubmit={onSubmit}
         className="mx-auto w-full max-w-lg space-y-4 rounded-xl border border-border bg-card p-6"
       >
-        <h1 className="text-2xl font-semibold tracking-tight">Área administrativa</h1>
-        <p className="text-sm text-muted">Entre para gerir portfólio, artes e orçamentos.</p>
+        <h1 className="text-2xl font-semibold tracking-tight">Admin</h1>
+        <p className="text-sm text-muted">Sign in to manage portfolio, flash, and quotes.</p>
         <div>
           <label htmlFor="email" className="text-sm font-medium">
-            E-mail
+            Email
           </label>
           <input
             id="email"
@@ -51,7 +51,7 @@ export default function LoginPage() {
         </div>
         <div>
           <label htmlFor="password" className="text-sm font-medium">
-            Senha
+            Password
           </label>
           <input
             id="password"
@@ -68,7 +68,7 @@ export default function LoginPage() {
           disabled={loading}
           className="inline-flex min-h-12 w-full items-center justify-center rounded-lg bg-primary px-6 py-3 text-sm font-semibold text-surface transition-colors hover:bg-primary-hover disabled:opacity-60"
         >
-          {loading ? "Entrando…" : "Entrar"}
+          {loading ? "Signing in…" : "Sign in"}
         </button>
       </form>
     </SiteShell>
